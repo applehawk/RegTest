@@ -1,0 +1,12 @@
+<h2>Please login now</h2>
+
+<form action="/login" method="post" id="session" enctype="multipart/form-data">
+  <div class="placeholding-input username">
+    <input type="text" name="session[username]" class="text-input" title="<%= @login_title %>" autocomplete="on">
+    <span class="placeholder"><%= @login_title %></span>
+  </div>
+  <div class="placeholding-input password">
+    <input type="text" name="session[password]" class="text-input" title="<%= @password_title %>" autocomplete="on">
+    <span class="placeholder"><%= @password_title %></span>
+  </div>
+</form>

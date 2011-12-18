@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title><%= @title %></title>
+  <link href="/css/styles.css" media="screen" rel="stylesheet" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+  <%= yield %>
+
+  <div id="debug">
+    <p>The time is <%= Time.now.strftime("%I:%M:%S %p") %>.</p>
+    <p>Sinatra version <%= Sinatra::VERSION %>.</p>
+  </div>
+
+</body>
+</html>

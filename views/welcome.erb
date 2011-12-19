@@ -1,12 +1,18 @@
 <h2>Please login now</h2>
 
-<form action="/login" method="post" id="session" enctype="multipart/form-data">
+<form action="/auth" method="post" id="session" enctype="multipart/form-data">
   <div class="placeholding-input username">
-    <input type="text" name="session[username]" class="text-input" title="<%= @login_title %>" autocomplete="on">
-    <span class="placeholder"><%= @login_title %></span>
+    <input type="text" name="session[username]" class="text-input" title="<%= @title[:username] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:username] %></span>
   </div>
   <div class="placeholding-input password">
-    <input type="text" name="session[password]" class="text-input" title="<%= @password_title %>" autocomplete="on">
-    <span class="placeholder"><%= @password_title %></span>
+    <input type="password" name="session[password]" class="text-input" title="<%= @title[:password] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:password] %></span>
+  </div>
+  <div>
+    <input type="submit" name="submit" class="button-submit" title="<%= @title[:btn_submit] %>">
   </div>
 </form>
+<div class="url-text-div">
+  <a href="/register">Register now!</a> 
+</div>

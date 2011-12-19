@@ -5,7 +5,6 @@ require 'dm-migrations'
 require 'digest'
 
 enable :sessions
-
 #Setup our ORM of database on Sqlite3 model, set dir of DB
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/database.db")
 #ORM Model of the User table
@@ -18,19 +17,14 @@ class User
   property :hashed_password, String, :required => true
   property :created_at,     DateTime
 end
-
-
 #Create or upgrade DB from the ORM Models
 DataMapper.auto_upgrade!
 
 get '/' do
-  redirect '/welcome'
+  redirect '/login'
 end
 
 get '/login' do
-  if(  User.first(:id => session[:userid]) != nil)
-    redirect '/welcome'
-  end
   @title = {
     :main => "Welcome!",
     :username => "Login or name of email",
@@ -58,26 +52,13 @@ post '/create' do
   if current_user.length > 0
     redirect '/register'
   end
+  
   @user = User.new();
   @user.hashed_password = hashed_password
   @user.username = username
   @user.email = mail;
-  @user.created_at = Time.now
   if @user.save
     redirect("/login");
-  end
-end
-
-get '/welcome' do
-  user = User.first(:id => session[:userid])
-  if( user == nil)
-    redirect '/login'
-  else
-    @title = { 
-      :main => "Welcome to our service!",
-      :username => user.username 
-    }
-    erb :main
   end
 end
 
@@ -89,10 +70,19 @@ post '/auth' do
     :username => username,
     :hashed_password => hashed_password
   )
+
   #Secure!
   if(current_user != nil)
-    session[:userid] = current_user.id
-    redirect '/welcome'
+    @username = username
+    @title = { :main => "Welcome!"}
+    id = [3241335, request.ip, rand(1<<64), Tume.now.to_f] * ':'
+    key = Digest::SHA2.new.hexdigest(id)
+    responce.set_cocke('secure_key',
+                      :value => key,
+                      :secure => true,
+                      :httponly => true)
+    session[:id] = key
+    erb :main
   else
     redirect '/login'
   end

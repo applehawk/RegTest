@@ -1,2 +1,10 @@
 body {margin: 40px; font: 16px/18px helvetica; }
 #debug { font-size: 11px; color: #999; margin-top: 50px; }
+
+html, body, div, span, object, h1, h2 {
+}
+
+.placeholding-input .placeholder {
+  position:absolute;
+  color: #999
+}

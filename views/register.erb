@@ -1,0 +1,25 @@
+<h2>Register of User</h2>
+
+<form action="/create" method="post" id="newuser" enctype="multipart/form-data">
+  <div class="placeholding-input username">
+    <input type="text" name="newuser[username]" class="text-input" title="<%= @title[:username] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:username] %></span>
+  </div>
+  <div class="placeholding-input password">
+    <input type="password" name="newuser[password]" class="text-input" title="<%= @title[:password] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:password] %></span>
+  </div>
+  <div class="placeholding-input password">
+    <input type="password" name="newuser[password]" class="text-input" title="<%= @title[:check_password] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:check_password] %></span>
+  </div>
+
+  <div class="placeholding-input password">
+    <input type="text" name="newuser[mail]" class="text-input" title="<%= @title[:mail] %>" autocomplete="on">
+    <span class="placeholder"><%= @title[:mail] %></span>
+  </div>
+
+  <div>
+    <input type="submit" name="submit" class="button-submit" title="<%= @title[:btn_submit] %>">
+  </div>
+</form>
